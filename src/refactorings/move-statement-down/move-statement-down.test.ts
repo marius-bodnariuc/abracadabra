@@ -314,6 +314,48 @@ console.log("Should not move");`,
   name = "foo";
 }`,
         expectedPosition: new Position(5, 2)
+      },
+      {
+        description: "class method without space between methods",
+        code: `class Node {
+  getName() {
+    return "foo";
+  }
+  getSize() {
+    return 1;
+  }
+}`,
+        selection: Selection.cursorAt(1, 2),
+        expected: `class Node {
+  getSize() {
+    return 1;
+  }
+  getName() {
+    return "foo";
+  }
+}`,
+        expectedPosition: new Position(4, 2)
+      },
+      {
+        description: "object method without space between methods",
+        code: `const node = {
+  getName() {
+    return "foo";
+  },
+  getSize() {
+    return 1;
+  }
+}`,
+        selection: Selection.cursorAt(1, 2),
+        expected: `const node = {
+  getSize() {
+    return 1;
+  },
+  getName() {
+    return "foo";
+  }
+}`,
+        expectedPosition: new Position(4, 2)
       }
     ],
     async ({ code, selection, expected, expectedPosition }) => {
