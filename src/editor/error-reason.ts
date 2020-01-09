@@ -1,6 +1,7 @@
 export { ErrorReason, toString };
 
 enum ErrorReason {
+  DidNotFoundClassToExtractInterface,
   DidNotFoundReactComponent,
   DidNotFoundIfStatementToAddBraces,
   DidNotFoundDeadCode,
@@ -39,6 +40,9 @@ enum ErrorReason {
 
 function toString(reason: ErrorReason): string {
   switch (reason) {
+    case ErrorReason.DidNotFoundClassToExtractInterface:
+      return didNotFound("a class to extract the interface");
+
     case ErrorReason.DidNotFoundReactComponent:
       return didNotFound("a React component to convert");
     
